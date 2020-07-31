@@ -1,0 +1,7 @@
+name: SystemCall
+version: ${project.version}
+main: vip.bingzi.systemcall.SystemCall
+api-version: 1.16
+softdepend: [PlaceholderAPI]
+authors: [BingZi, jianjianai]
+description: 一个调用系统组件的Minecraft插件。
