@@ -4,8 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import vip.bingzi.systemcall.lib.SystemCmd;
 
 import java.io.File;
+import java.io.IOException;
 
 public final class SystemCall extends JavaPlugin {
     @Override
@@ -74,6 +76,13 @@ public final class SystemCall extends JavaPlugin {
             sender.sendMessage("    cmd - 以cmd的方式运行");
             sender.sendMessage("      String - 执行的命令");
             sender.sendMessage("§a§l§m===========================");
+        }
+        if ("cmd".equalsIgnoreCase(args[0])) {
+            try {
+                SystemCmd.onCmd(args[2 - (args.length - 1)]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return true;
     }
