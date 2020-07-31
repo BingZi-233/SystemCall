@@ -10,6 +10,8 @@ import vip.bingzi.systemcall.lib.SystemCmd;
 import java.io.File;
 
 public final class SystemCall extends JavaPlugin {
+    public static YamlConfiguration Command;
+    public static YamlConfiguration UserName;
     public static YamlConfiguration NoCmd;
     private static SystemCall systemCall;
 
@@ -28,6 +30,8 @@ public final class SystemCall extends JavaPlugin {
         onFileExamine(fileUserName, false, "可执行者名单");
         onFileExamine(fileNoCmd, false, "禁止命令");
         NoCmd = YamlConfiguration.loadConfiguration(fileNoCmd);
+        Command = YamlConfiguration.loadConfiguration(fileCommand);
+        UserName = YamlConfiguration.loadConfiguration(fileUserName);
     }
 
     @Override
