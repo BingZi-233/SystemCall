@@ -1,5 +1,5 @@
 # 配置文件版本，如果不熟悉这个是干啥的请不要修改。
-Version: ${project.version}
+Version: 1.0-SNAPSHOT
 # 自动更新配置文件
 # [true - 开启 / false - 关闭]
 AutoUpDate: true
