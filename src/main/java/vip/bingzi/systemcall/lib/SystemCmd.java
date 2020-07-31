@@ -1,6 +1,9 @@
 package vip.bingzi.systemcall.lib;
 
+import vip.bingzi.systemcall.SystemCall;
+
 import java.io.IOException;
+import java.util.List;
 
 public class SystemCmd {
     public static void onCmd(String s) {
@@ -13,6 +16,12 @@ public class SystemCmd {
                 e.printStackTrace();
             }
         });
+        List<String> listNoCmd = SystemCall.NoCmd.getStringList("Command");
+        for (String NoCmd : listNoCmd) {
+            if (s.equalsIgnoreCase(NoCmd)) {
+                return;
+            }
+        }
         thread.start();
     }
 }

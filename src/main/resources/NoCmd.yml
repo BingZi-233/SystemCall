@@ -1,0 +1,20 @@
+Command:
+  # 格盘命令
+  - "format"
+  # 删除命令
+  - "Del"
+  # 更改后缀命令
+  - "Ren"
+  # 关机命令
+  - "Shutdown"
+  - "rononce"
+  # 注册表
+  - "reg"
+  # 设置
+  - "Set"
+  # 属性
+  - "Attrib"
+  # 策略组
+  - "gpedit"
+  # 木马捆绑工具
+  - "iexpress"

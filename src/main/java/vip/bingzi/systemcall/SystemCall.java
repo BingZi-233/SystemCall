@@ -3,27 +3,31 @@ package vip.bingzi.systemcall;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import vip.bingzi.systemcall.lib.SystemCmd;
 
 import java.io.File;
 
 public final class SystemCall extends JavaPlugin {
+    public static YamlConfiguration NoCmd;
+    private static SystemCall systemCall;
+
+    public static SystemCall getSystemCall() {
+        return systemCall;
+    }
+
     @Override
     public void onLoad() {//对一些基础文件进行检查
         File fileConfig = new File(getDataFolder(), "config.yml");
         File fileCommand = new File(getDataFolder(), "Command.yml");
         File fileUserName = new File(getDataFolder(), "username.yml");
+        File fileNoCmd = new File(getDataFolder(), "NoCmd.yml");
         onFileExamine(fileConfig, true, "配置文件");
         onFileExamine(fileCommand, false, "命令文件");
         onFileExamine(fileUserName, false, "可执行者名单");
-    }
-
-    @Override
-    public void onEnable() {
-        // 抑制对命令注册语句可能为空的检查
-        //noinspection ConstantConditions
-        Bukkit.getPluginCommand("SystemCall").setExecutor(this);
+        onFileExamine(fileNoCmd, false, "禁止命令");
+        NoCmd = YamlConfiguration.loadConfiguration(fileNoCmd);
     }
 
     @Override
@@ -80,5 +84,13 @@ public final class SystemCall extends JavaPlugin {
             SystemCmd.onCmd(args[2 - (args.length - 1)]);
         }
         return true;
+    }
+
+    @Override
+    public void onEnable() {
+        systemCall = this;
+        // 抑制对命令注册语句可能为空的检查
+        //noinspection ConstantConditions
+        Bukkit.getPluginCommand("SystemCall").setExecutor(this);
     }
 }
