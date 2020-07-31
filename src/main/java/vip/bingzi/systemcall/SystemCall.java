@@ -79,7 +79,7 @@ public final class SystemCall extends JavaPlugin {
         }
         if ("cmd".equalsIgnoreCase(args[0])) {
             try {
-                SystemCmd.onCmd(args[2 - (args.length - 1)]);
+                SystemCmd.onCmd(args[2 - (args.length - 2)]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
