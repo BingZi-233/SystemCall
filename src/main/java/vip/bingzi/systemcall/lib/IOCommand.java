@@ -10,10 +10,10 @@ public class IOCommand {
     }
 
     public static int getDelayTick() {
-        return SystemCall.Command.getInt("DelayTick");
+        return SystemCall.Command.getInt("DelayTick") * 20;
     }
 
     public static int getPeriodTick() {
-        return SystemCall.Command.getInt("PeriodTick");
+        return SystemCall.Command.getInt("PeriodTick") * 20;
     }
 }
