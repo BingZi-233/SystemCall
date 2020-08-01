@@ -6,7 +6,7 @@ import java.util.List;
 
 public class IOCommand {
     public static List<String> getCommandList() {
-        return SystemCall.Command.getStringList("CommandList");
+        return SystemCall.Command.getStringList("Command");
     }
 
     public static int getDelayTick() {

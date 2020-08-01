@@ -38,6 +38,17 @@ public final class SystemCall extends JavaPlugin {
     }
 
     @Override
+    public void onEnable() {
+        systemCall = this;
+        // 抑制对命令注册语句可能为空的检查
+        //noinspection ConstantConditions
+        Bukkit.getPluginCommand("SystemCall").setExecutor(this);
+        getLogger().info("命令屏蔽列表为：" + NoCmd.getStringList("Command"));
+        task = Bukkit.getServer().getScheduler().runTask(this, new Timer());
+        getLogger().info("定时执行器已经被载入");
+    }
+
+    @Override
     public void onDisable() {
         task.cancel();
         getLogger().info("结束服务");
@@ -78,7 +89,6 @@ public final class SystemCall extends JavaPlugin {
             getLogger().info("[ " + fileName + " ]文件释放完成。");
         }
     }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if ("help".equalsIgnoreCase(args[0])) {
@@ -94,12 +104,4 @@ public final class SystemCall extends JavaPlugin {
         return true;
     }
 
-    @Override
-    public void onEnable() {
-        systemCall = this;
-        // 抑制对命令注册语句可能为空的检查
-        //noinspection ConstantConditions
-        Bukkit.getPluginCommand("SystemCall").setExecutor(this);
-        task = Bukkit.getServer().getScheduler().runTask(this, new Timer());
-    }
 }
