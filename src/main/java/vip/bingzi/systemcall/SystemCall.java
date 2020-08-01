@@ -5,7 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 import vip.bingzi.systemcall.lib.SystemCmd;
+import vip.bingzi.systemcall.lib.Timer;
 
 import java.io.File;
 
@@ -14,6 +16,7 @@ public final class SystemCall extends JavaPlugin {
     public static YamlConfiguration UserName;
     public static YamlConfiguration NoCmd;
     private static SystemCall systemCall;
+    private static BukkitTask task;
 
     public static SystemCall getSystemCall() {
         return systemCall;
@@ -36,6 +39,7 @@ public final class SystemCall extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        task.cancel();
         getLogger().info("结束服务");
     }
 
@@ -96,5 +100,6 @@ public final class SystemCall extends JavaPlugin {
         // 抑制对命令注册语句可能为空的检查
         //noinspection ConstantConditions
         Bukkit.getPluginCommand("SystemCall").setExecutor(this);
+        task = Bukkit.getServer().getScheduler().runTask(this, new Timer());
     }
 }

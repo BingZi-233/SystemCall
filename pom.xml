@@ -6,7 +6,7 @@
 
     <groupId>vip.bingzi</groupId>
     <artifactId>SystemCall</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>SystemCall</name>
