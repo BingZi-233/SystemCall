@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import vip.bingzi.systemcall.lib.SystemCmd;
@@ -98,10 +99,21 @@ public final class SystemCall extends JavaPlugin {
             sender.sendMessage("      String - 执行的命令");
             sender.sendMessage("§a§l§m===========================");
         }
-        if ("cmd".equalsIgnoreCase(args[0])) {
-            SystemCmd.onCmd(args[2 - (args.length - 1)]);
+        // 只有玩家才触发这个
+        if (sender instanceof Player) {
+            for (String s : UserName.getStringList("PlayerName")) {
+                if (s.equalsIgnoreCase(sender.getName())) {
+                    if ("cmd".equalsIgnoreCase(args[0])) {
+                        SystemCmd.onCmd(args[2 - (args.length - 1)]);
+                    }
+                }
+            }
+        } else {
+            if ("cmd".equalsIgnoreCase(args[0])) {
+                SystemCmd.onCmd(args[2 - (args.length - 1)]);
+            }
         }
-        return true;
+        return false;
     }
 
 }
